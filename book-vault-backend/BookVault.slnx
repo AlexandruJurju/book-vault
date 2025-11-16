@@ -1,0 +1,15 @@
+<Solution>
+    <Folder Name="/Aspire/">
+        <Project Path="src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" />
+        <Project Path="src/aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" />
+    </Folder>
+    <Folder Name="/Services/">
+        <Project Path="src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" />
+    </Folder>
+    <Folder Name="/SharedKernel/" />
+    <Folder Name="/SolutionItems/">
+        <File Path=".editorconfig" />
+        <File Path="Directory.Build.props" />
+        <File Path="Directory.Packages.props" />
+    </Folder>
+</Solution>
