@@ -7,9 +7,10 @@
         <Project Path="src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" />
     </Folder>
     <Folder Name="/SharedKernel/" />
-    <Folder Name="/SolutionItems/">
+    <Folder Name="/Solution Items/">
         <File Path=".editorconfig" />
         <File Path="Directory.Build.props" />
         <File Path="Directory.Packages.props" />
+        <File Path="global.json" />
     </Folder>
 </Solution>

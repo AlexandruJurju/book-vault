@@ -2,22 +2,20 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
         <UserSecretsId>e8faf5cd-a860-48e6-ade1-1bfbc7ced813</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\book-vault-catalog\BookVault.Catalog.Api\BookVault.Catalog.Api.csproj" />
+        <ProjectReference Include="..\..\book-vault-catalog\BookVault.Catalog.Api\BookVault.Catalog.Api.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.0.0" />
-      <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.0.0" />
-      <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.0.0" />
-      <PackageReference Include="Aspire.Hosting.Redis" Version="13.0.0" />
-      <PackageReference Include="Aspire.Hosting.Yarp" Version="13.0.0" />
-      <PackageReference Include="CommunityToolkit.Aspire.Hosting.MailPit" Version="13.0.0-beta.439" />
+      <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.2" />
+      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.0.2" />
+      <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.0.2" />
+      <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.0.2" />
+      <PackageReference Include="Aspire.Hosting.Redis" Version="13.0.2" />
+      <PackageReference Include="Aspire.Hosting.Yarp" Version="13.0.2" />
+      <PackageReference Include="CommunityToolkit.Aspire.Hosting.MailPit" Version="13.0.0" />
     </ItemGroup>
 </Project>

@@ -5,9 +5,23 @@
     <projectFile aspireProfileName="https">src/aspire/BookVault.AppHost/BookVault.AppHost.csproj</projectFile>
     <projectFile profileName="http">src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj</projectFile>
     <projectFile profileName="https">src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj</projectFile>
+    <projectFile profileName="http">src/book-vault-catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj</projectFile>
+    <projectFile profileName="https">src/book-vault-catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj</projectFile>
+    <projectFile profileName="http">src/book-vault-catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj</projectFile>
+    <projectFile profileName="https">src/book-vault-catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj</projectFile>
+    <projectFile profileName="http">src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj</projectFile>
+    <projectFile profileName="https">src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d941724-741b-4d7a-a246-fea7e9993bed" name="Changes" comment="" />
+    <list default="true" id="0d941724-741b-4d7a-a246-fea7e9993bed" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BookVault/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BookVault/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookVault.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/BookVault.slnx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Packages.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +29,10 @@
   </component>
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="19" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -32,17 +50,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Aspire Host.BookVault.AppHost: https.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Aspire Host.BookVault.AppHost: https.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Aspire Host.BookVault.AppHost: https">
     <configuration name="BookVault.AppHost: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" />
@@ -128,6 +153,102 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="BookVault.Catalog.Application: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BookVault.Catalog.Application: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BookVault.Catalog.Domain: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BookVault.Catalog.Domain: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BookVault.Catalog.Infrastructure: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BookVault.Catalog.Infrastructure: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -141,11 +262,35 @@
       <workItem from="1763192749505" duration="681000" />
       <workItem from="1763268420837" duration="14000" />
       <workItem from="1763268627210" duration="157000" />
+      <workItem from="1763290883226" duration="724000" />
+      <workItem from="1763402707064" duration="170000" />
+      <workItem from="1763483680017" duration="93000" />
+      <workItem from="1763794441206" duration="668000" />
+      <workItem from="1763884483079" duration="46000" />
+      <workItem from="1764011906114" duration="23000" />
+      <workItem from="1765005705030" duration="642000" />
+      <workItem from="1765006385677" duration="39000" />
+      <workItem from="1765006480042" duration="911000" />
+      <workItem from="1765007405606" duration="444000" />
     </task>
+    <task id="LOCAL-00001" summary="Starting">
+      <option name="closed" value="true" />
+      <created>1763291154685</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763291154685</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Starting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
