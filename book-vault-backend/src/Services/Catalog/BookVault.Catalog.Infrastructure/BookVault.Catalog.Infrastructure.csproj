@@ -10,4 +10,8 @@
       <ProjectReference Include="..\BookVault.Catalog.Application\BookVault.Catalog.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Configurations\" />
+    </ItemGroup>
+
 </Project>
