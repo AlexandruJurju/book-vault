@@ -11,15 +11,30 @@
     <projectFile profileName="https">src/book-vault-catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj</projectFile>
     <projectFile profileName="http">src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj</projectFile>
     <projectFile profileName="https">src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj</projectFile>
+    <projectFile>src/services/Catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d941724-741b-4d7a-a246-fea7e9993bed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/BookWorm.BuildingBlocks/BookWorm.BuildingBlocks.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BookVault/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BookVault/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookVault.Common/BookVault.Common.csproj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BookVault.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/BookVault.slnx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Packages.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/Properties/launchSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Api/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Application/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Domain/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Infrastructure/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/BookVault.SharedKernel/BookVault.SharedKernel.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/BookVault.SharedKernel/EntityFramework/DbContextExtensions.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +51,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AlexandruJurju&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AlexandruJurju/book-vault&quot;,
+    &quot;accountId&quot;: &quot;bedef154-746b-4623-9444-b7bfb0f6b13d&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/.vs/BookVault.slnx/config/applicationhost.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Application/Class1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Domain/Class1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/book-vault-catalog/BookVault.Catalog.Infrastructure/Class1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/common/BookVault.SharedKernel/EntityFramework/DbContextExtensions.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -126,6 +149,27 @@
       <option name="TRACK_URL" value="1" />
       <option name="TRACK_BROWSER_LAUNCH" value="1" />
       <browser url="https://localhost:17240" start="true" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BookVault.Catalog.Api" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/src/services/Catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -281,6 +325,13 @@
       <workItem from="1765006385677" duration="39000" />
       <workItem from="1765006480042" duration="911000" />
       <workItem from="1765007405606" duration="444000" />
+      <workItem from="1766479796227" duration="11000" />
+      <workItem from="1766486649586" duration="1000" />
+      <workItem from="1766486666992" duration="2000" />
+      <workItem from="1767171607069" duration="11000" />
+      <workItem from="1767814704335" duration="211000" />
+      <workItem from="1767814946156" duration="220000" />
+      <workItem from="1767874872321" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="Starting">
       <option name="closed" value="true" />
@@ -290,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763291154685</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added CPM">
+      <option name="closed" value="true" />
+      <created>1766406795248</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766406795248</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +358,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Starting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting" />
+    <MESSAGE value="Added CPM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added CPM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

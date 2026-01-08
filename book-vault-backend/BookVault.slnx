@@ -1,12 +1,18 @@
 <Solution>
     <Folder Name="/Aspire/">
-        <Project Path="src/aspire/BookVault.AppHost/BookVault.AppHost.csproj" />
-        <Project Path="src/aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" />
+        <Project Path="src/Aspire/BookVault.AppHost/BookVault.AppHost.csproj" />
+        <Project Path="src/Aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj" />
     </Folder>
-    <Folder Name="/Services/">
-        <Project Path="src/book-vault-catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" />
+    <Folder Name="/BuildingBlocks/">
+        <Project Path="src/BookWorm.BuildingBlocks/BookWorm.BuildingBlocks.csproj" />
     </Folder>
-    <Folder Name="/SharedKernel/" />
+    <Folder Name="/Services/" />
+    <Folder Name="/Services/Catalog/">
+        <Project Path="src/services/Catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj" />
+        <Project Path="src/Services/Catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj" />
+        <Project Path="src/Services/Catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj" />
+        <Project Path="src/Services/Catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj" />
+    </Folder>
     <Folder Name="/Solution Items/">
         <File Path=".editorconfig" />
         <File Path=".gitignore" />
