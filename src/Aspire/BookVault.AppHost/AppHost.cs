@@ -14,9 +14,7 @@ var catalogApi = builder
     .WithReference(catalogDb)
     .WaitFor(catalogDb);
 
-var scalar = builder.AddScalarApiReference();
-
-scalar
+builder.AddScalarApiReference()
     .WithApiReference(catalogApi);
 
 builder.Build().Run();
