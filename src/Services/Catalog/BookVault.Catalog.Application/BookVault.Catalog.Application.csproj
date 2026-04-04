@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <ProjectReference Include="..\BookVault.Catalog.Domain\BookVault.Catalog.Domain.csproj"/>
+        <ProjectReference Include="..\BookVault.Catalog.Domain\BookVault.Catalog.Domain.csproj" />
     </ItemGroup>
 </Project>

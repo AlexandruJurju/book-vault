@@ -16,9 +16,7 @@ var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-if (app.Environment.IsDevelopment())
-{
-}
+if (app.Environment.IsDevelopment()) { }
 
 app.UseHttpsRedirection();
 
