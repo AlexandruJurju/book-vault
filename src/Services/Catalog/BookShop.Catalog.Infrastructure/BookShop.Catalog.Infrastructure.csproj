@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="Mediator.Abstractions"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\BookShop.Catalog.Application\BookShop.Catalog.Application.csproj"/>
+    </ItemGroup>
+</Project>

@@ -6,7 +6,7 @@ public static class ConfigurationExtensions
 {
     public static string GetRequiredConnectionString(this IConfiguration configuration, string name)
     {
-        var connectionString = configuration.GetConnectionString(name);
+        string? connectionString = configuration.GetConnectionString(name);
 
         if (string.IsNullOrEmpty(connectionString))
         {

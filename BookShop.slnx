@@ -1,20 +1,21 @@
 <Solution>
     <Folder Name="/Aspire/">
-        <Project Path="src/Aspire/BookVault.AppHost/BookVault.AppHost.csproj"/>
-        <Project Path="src/Aspire/BookVault.ServiceDefaults/BookVault.ServiceDefaults.csproj"/>
+        <Project Path="src/Aspire/BookShop.AppHost/BookShop.AppHost.csproj"/>
+        <Project Path="src/Aspire/BookShop.ServiceDefaults/BookShop.ServiceDefaults.csproj"/>
     </Folder>
     <Folder Name="/BuildingBlocks/">
         <Project Path="src/BuildingBlocks/BuildingBlocks.Constants/BuildingBlocks.Constants.csproj"/>
         <Project Path="src/BuildingBlocks/BuildingBlocks.SharedKernel/BuildingBlocks.SharedKernel.csproj"/>
         <Project Path="src/BuildingBlocks/BuildingBlocks.Chassis/BuildingBlocks.Chassis.csproj"/>
     </Folder>
+    <Folder Name="/BuildingBlocks/Chasis/"/>
     <Folder Name="/Services/"/>
     <Folder Name="/Services/Basket/"/>
     <Folder Name="/Services/Catalog/">
-        <Project Path="src/Services/Catalog/BookVault.Catalog.Api/BookVault.Catalog.Api.csproj"/>
-        <Project Path="src/Services/Catalog/BookVault.Catalog.Application/BookVault.Catalog.Application.csproj"/>
-        <Project Path="src/Services/Catalog/BookVault.Catalog.Domain/BookVault.Catalog.Domain.csproj"/>
-        <Project Path="src/Services/Catalog/BookVault.Catalog.Infrastructure/BookVault.Catalog.Infrastructure.csproj"/>
+        <Project Path="src/Services/Catalog/BookShop.Catalog.Api/BookShop.Catalog.Api.csproj"/>
+        <Project Path="src/Services/Catalog/BookShop.Catalog.Application/BookShop.Catalog.Application.csproj"/>
+        <Project Path="src/Services/Catalog/BookShop.Catalog.Domain/BookShop.Catalog.Domain.csproj"/>
+        <Project Path="src/Services/Catalog/BookShop.Catalog.Infrastructure/BookShop.Catalog.Infrastructure.csproj"/>
     </Folder>
     <Folder Name="/Services/Ordering/"/>
     <Folder Name="/Services/Rating/"/>

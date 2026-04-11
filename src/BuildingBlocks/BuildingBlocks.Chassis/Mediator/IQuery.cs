@@ -3,4 +3,6 @@ using Mediator;
 
 namespace BuildingBlocks.Chassis.Mediator;
 
-public interface IQuery<TResponse> : IRequest<Result<TResponse>> { }
+public interface IQuery<TResponse> : IRequest<Result<TResponse>>
+{
+}

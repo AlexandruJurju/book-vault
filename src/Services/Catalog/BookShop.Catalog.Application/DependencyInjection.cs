@@ -1,7 +1,6 @@
-﻿using Mediator;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace BookVault.Catalog.Application;
+namespace BookShop.Catalog.Application;
 
 public static class DependencyInjection
 {

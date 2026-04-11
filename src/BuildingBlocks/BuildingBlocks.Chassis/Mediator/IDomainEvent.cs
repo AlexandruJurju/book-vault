@@ -2,4 +2,6 @@
 
 namespace BuildingBlocks.Chassis.Mediator;
 
-public interface IDomainEvent : INotification { }
+public interface IDomainEvent : INotification
+{
+}

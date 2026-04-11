@@ -1,9 +1,9 @@
-using BookVault.Catalog.Application;
-using BookVault.ServiceDefaults;
+using BookShop.Catalog.Application;
+using BookShop.ServiceDefaults;
 using BuildingBlocks.Chassis.Endpoints;
 using Scalar.AspNetCore;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
@@ -12,11 +12,14 @@ builder.Services.AddApplication();
 
 builder.Services.AddEndpoints(typeof(Program).Assembly);
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-if (app.Environment.IsDevelopment()) { }
+if (app.Environment.IsDevelopment())
+{
+    app.MapScalarApiReference();
+}
 
 app.UseHttpsRedirection();
 
@@ -24,4 +27,4 @@ app.MapEndpoints();
 
 app.UseDefaultOpenApi();
 
-app.Run();
+await app.RunAsync();

@@ -4,16 +4,16 @@ using Mediator;
 
 namespace BuildingBlocks.Chassis.Mediator.Behaviors;
 
-// todo: could be implemented as a message pre-processor
+// could also be done with message preprocessor
 public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMessage>> validators)
     : IPipelineBehavior<TMessage, TResponse>
     where TMessage : IMessage
     where TResponse : notnull
 {
     public async ValueTask<TResponse> Handle(
-        TMessage message,
+        TMessage                                    message,
         MessageHandlerDelegate<TMessage, TResponse> next,
-        CancellationToken cancellationToken
+        CancellationToken                           cancellationToken
     )
     {
         if (!validators.Any())
@@ -23,7 +23,7 @@ public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMes
 
         var context = new ValidationContext<TMessage>(message);
 
-        var validationResult = await Task.WhenAll(
+        ValidationResult[] validationResult = await Task.WhenAll(
             validators.Select(v => v.ValidateAsync(context, cancellationToken))
         );
 

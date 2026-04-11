@@ -1,3 +1,5 @@
 ﻿namespace BuildingBlocks.Chassis.Mediator;
 
-public interface IDomainEventHandler { }
+public interface IDomainEventHandler
+{
+}
