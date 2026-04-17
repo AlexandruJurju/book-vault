@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Application.Mediator.Behaviors;
-using FluentValidation;
-using Mediator;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookShop.Catalog.Application;

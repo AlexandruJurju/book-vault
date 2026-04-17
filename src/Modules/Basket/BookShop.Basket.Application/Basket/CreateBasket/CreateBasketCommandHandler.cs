@@ -1,5 +1,5 @@
 ﻿using Ardalis.Result;
-using BuildingBlocks.Application.Mediator;
+using BuildingBlocks.Application.CQRS;
 
 namespace BookShop.Basket.Application.Basket.CreateBasket;
 

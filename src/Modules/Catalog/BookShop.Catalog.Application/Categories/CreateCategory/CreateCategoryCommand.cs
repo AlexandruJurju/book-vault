@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Application.Mediator;
+﻿using BuildingBlocks.Application.CQRS;
 
 namespace BookShop.Catalog.Application.Categories.CreateCategory;
 

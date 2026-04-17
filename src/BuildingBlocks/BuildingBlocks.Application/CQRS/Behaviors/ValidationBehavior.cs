@@ -2,7 +2,7 @@
 using FluentValidation.Results;
 using Mediator;
 
-namespace BuildingBlocks.Application.Mediator.Behaviors;
+namespace BuildingBlocks.Application.CQRS.Behaviors;
 
 // could also be done with message preprocessor
 public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMessage>> validators)

@@ -1,6 +1,6 @@
 ﻿using Mediator;
 
-namespace BuildingBlocks.Application.Mediator;
+namespace BuildingBlocks.Application.CQRS;
 
 public interface INotificationHandler<in TNotification>
     where TNotification : INotification

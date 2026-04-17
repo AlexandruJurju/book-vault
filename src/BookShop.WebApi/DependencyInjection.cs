@@ -1,7 +1,7 @@
 ﻿using BookShop.Basket.Api;
 using BookShop.Catalog.Api;
 using BookShop.Users.Api;
-using BuildingBlocks.Application.Mediator.Behaviors;
+using BuildingBlocks.Application.CQRS.Behaviors;
 using Mediator;
 
 namespace BookShop.WebApi;
