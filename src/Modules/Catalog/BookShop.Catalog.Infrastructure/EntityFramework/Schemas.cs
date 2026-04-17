@@ -1,4 +1,4 @@
-﻿namespace BookShop.Catalog.Infrastructure.Database;
+﻿namespace BookShop.Catalog.Infrastructure.EntityFramework;
 
 internal static class Schemas
 {

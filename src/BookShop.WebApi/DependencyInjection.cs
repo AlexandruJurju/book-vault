@@ -1,5 +1,6 @@
 ﻿using BookShop.Basket.Api;
 using BookShop.Catalog.Api;
+using BookShop.Users.Api;
 using BuildingBlocks.Application.Mediator.Behaviors;
 using Mediator;
 
@@ -11,6 +12,7 @@ internal static class DependencyInjection
     {
         builder.AddCatalogModule();
         builder.AddBasketModule();
+        builder.AddUsersModule();
     }
 
     public static void AddModuleMediator(this IServiceCollection services)

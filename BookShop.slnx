@@ -27,6 +27,12 @@
     <Project Path="src/Modules/Catalog/BookShop.Catalog.Domain/BookShop.Catalog.Domain.csproj" />
     <Project Path="src/Modules/Catalog/BookShop.Catalog.Infrastructure/BookShop.Catalog.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/Modules/Users/">
+    <Project Path="src/Modules/Users/BookShop.Users.Api/BookShop.Users.Api.csproj" />
+    <Project Path="src/Modules/Users/BookShop.Users.Application/BookShop.Users.Application.csproj" />
+    <Project Path="src/Modules/Users/BookShop.Users.Domain/BookShop.Users.Domain.csproj" />
+    <Project Path="src/Modules/Users/BookShop.Users.Infrastructure/BookShop.Users.Infrastructure.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />

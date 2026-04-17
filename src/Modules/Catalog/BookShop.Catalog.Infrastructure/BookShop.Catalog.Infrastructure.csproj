@@ -5,6 +5,6 @@
     <ProjectReference Include="..\BookShop.Catalog.Application\BookShop.Catalog.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\Migrations\" />
+    <Folder Include="EntityFramework\Migrations\" />
   </ItemGroup>
 </Project>

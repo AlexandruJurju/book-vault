@@ -2,7 +2,7 @@
 using BuildingBlocks.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookShop.Catalog.Infrastructure.Database;
+namespace BookShop.Catalog.Infrastructure.EntityFramework;
 
 public sealed class CatalogDbContext(
     DbContextOptions<CatalogDbContext> options

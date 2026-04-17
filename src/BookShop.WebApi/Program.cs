@@ -9,6 +9,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.Configuration.AddModuleConfiguration(["catalog", "basket", "users"]);
+
 builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
@@ -18,8 +20,6 @@ builder.Services.AddOpenApi();
 builder.Services.AddModuleMediator();
 
 builder.AddModules();
-
-builder.Configuration.AddModuleConfiguration(["catalog", "basket"]);
 
 WebApplication app = builder.Build();
 

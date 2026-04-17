@@ -1,4 +1,4 @@
-﻿using BookShop.Catalog.Infrastructure.Database;
+﻿using BookShop.Catalog.Infrastructure.EntityFramework;
 using BookShop.Shared.Aspire;
 using BuildingBlocks.Application.Data;
 using BuildingBlocks.Infrastructure.Configuration;
@@ -16,11 +16,6 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddCustomPostgresDbContext<CatalogDbContext>(configuration, CatalogResources.Database, Schemas.Catalog);
-
-        string databaseConnectionString = configuration.GetConnectionStringOrThrow(CatalogResources.Database);
-        NpgsqlDataSource npgsqlDataSource = new NpgsqlDataSourceBuilder(databaseConnectionString).Build();
-        services.TryAddSingleton(npgsqlDataSource);
-        services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
         services.AddSingleton(TimeProvider.System);
 
