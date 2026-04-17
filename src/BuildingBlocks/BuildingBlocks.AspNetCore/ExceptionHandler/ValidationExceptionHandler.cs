@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ValidationException = FluentValidation.ValidationException;
 
 namespace BuildingBlocks.AspNetCore.ExceptionHandler;
 

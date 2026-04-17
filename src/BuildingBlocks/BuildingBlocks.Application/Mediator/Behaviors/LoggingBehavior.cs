@@ -18,24 +18,28 @@ public sealed partial class LoggingBehavior<TMessage, TResponse>(
     )
     {
         string requestName = message.GetType().Name;
+        string moduleName = GetModuleName(typeof(TMessage).FullName!);
 
-        LogExecutingRequest(requestName);
-
-        TResponse result = await next(message, cancellationToken);
-
-        if (result.IsSuccess)
+        using (LogContext.PushProperty("Module", moduleName))
         {
-            LogCompletedRequest(requestName);
-        }
-        else
-        {
-            using (LogContext.PushProperty("Errors", result.Errors, true))
+            LogExecutingRequest(requestName);
+
+            TResponse result = await next(message, cancellationToken);
+
+            if (result.IsSuccess)
             {
-                LogFailedRequest(requestName);
+                LogCompletedRequest(requestName);
             }
-        }
+            else
+            {
+                using (LogContext.PushProperty("Errors", result.Errors, true))
+                {
+                    LogFailedRequest(requestName);
+                }
+            }
 
-        return result;
+            return result;
+        }
     }
 
     [LoggerMessage(LogLevel.Information, "Executing request {RequestName}")]
@@ -46,4 +50,7 @@ public sealed partial class LoggingBehavior<TMessage, TResponse>(
 
     [LoggerMessage(LogLevel.Error, "Request {RequestName} processed with errors")]
     partial void LogFailedRequest(string requestName);
+
+    private static string GetModuleName(string requestName)
+        => requestName.Split('.')[1];
 }

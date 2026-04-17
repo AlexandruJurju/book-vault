@@ -1,12 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BookShop.Shared.Aspire;
+using BuildingBlocks.Infrastructure.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace BuildingBlocks.Infrastructure.Cache;
 
-// todo: add distributed cache
 public static class Extensions
 {
-    public static IServiceCollection AddCache(
+    public static IServiceCollection AddCustomMemoryCache(
         this IServiceCollection services,
         IConfiguration          configuration
     )
@@ -26,8 +28,41 @@ public static class Extensions
 
             options.DefaultEntryOptions = new()
             {
-                Expiration = cacheOptions.Expiration,
-                LocalCacheExpiration = cacheOptions.Expiration,
+                LocalCacheExpiration = TimeSpan.FromMinutes(cacheOptions.LocalExpirationInMinutes),
+                Expiration = TimeSpan.FromMinutes(cacheOptions.DistributedExpirationInMinutes),
+            };
+        });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomDistributedCache(
+        this IServiceCollection services,
+        IConfiguration          configuration
+    )
+    {
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = configuration.GetConnectionStringOrThrow(Resources.Redis);
+        });
+
+        services
+            .AddOptionsWithValidateOnStart<CacheOptions>()
+            .Bind(configuration.GetSection(CacheOptions.ConfigurationSection))
+            .ValidateDataAnnotations();
+
+        CacheOptions cacheOptions = configuration
+            .GetSection(CacheOptions.ConfigurationSection)
+            .Get<CacheOptions>()!;
+
+        services.AddHybridCache(options =>
+        {
+            options.MaximumPayloadBytes = cacheOptions.MaximumPayloadBytes;
+
+            options.DefaultEntryOptions = new()
+            {
+                LocalCacheExpiration = TimeSpan.FromMinutes(cacheOptions.LocalExpirationInMinutes),
+                Expiration = TimeSpan.FromMinutes(cacheOptions.DistributedExpirationInMinutes),
             };
         });
 

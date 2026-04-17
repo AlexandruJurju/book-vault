@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using BookShop.Basket.Api;
 using BookShop.Catalog.Api;
 using BuildingBlocks.Application.Mediator.Behaviors;
 using Mediator;
@@ -7,18 +7,17 @@ namespace BookShop.WebApi;
 
 internal static class DependencyInjection
 {
-    public static void AddModules(this WebApplicationBuilder builder, List<Assembly> assemblies)
+    public static void AddModules(this WebApplicationBuilder builder)
     {
         builder.AddCatalogModule();
-        builder.Services.AddModularMediator(assemblies);
+        builder.AddBasketModule();
     }
 
-    private static void AddModularMediator(this IServiceCollection services, List<Assembly> assemblies)
+    public static void AddModuleMediator(this IServiceCollection services)
     {
         services.AddMediator(options =>
         {
             options.ServiceLifetime = ServiceLifetime.Scoped;
-            options.Assemblies = [..assemblies];
         });
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

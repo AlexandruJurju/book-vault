@@ -1,20 +1,25 @@
-using System.Reflection;
 using BookShop.ServiceDefaults;
 using BookShop.WebApi;
 using BookShop.WebApi.Extensions;
+using BuildingBlocks.AspNetCore.Endpoints;
+using BuildingBlocks.AspNetCore.ExceptionHandler;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+
+builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddOpenApi();
 
-List<Assembly> moduleAssemblies =
-[
-    BookShop.Catalog.Application.AssemblyReference.Assembly
-];
+builder.Services.AddModuleMediator();
 
-builder.AddModules(moduleAssemblies);
+builder.AddModules();
+
+builder.Configuration.AddModuleConfiguration(["catalog", "basket"]);
 
 WebApplication app = builder.Build();
 
@@ -28,5 +33,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseExceptionHandler();
+
+app.MapEndpoints();
 
 await app.RunAsync();

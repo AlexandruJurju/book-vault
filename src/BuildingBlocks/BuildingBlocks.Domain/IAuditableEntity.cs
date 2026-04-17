@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Shared.Helpers;
+﻿using BuildingBlocks.Common.Helpers;
 
 namespace BuildingBlocks.Domain;
 

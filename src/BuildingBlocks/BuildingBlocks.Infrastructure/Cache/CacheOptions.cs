@@ -13,5 +13,10 @@ public sealed partial class CacheOptions : IValidateOptions<CacheOptions>
     public int MaximumPayloadBytes { get; set; }
 
     [Required]
-    public TimeSpan Expiration { get; set; }
+    [Range(1, int.MaxValue)]
+    public int LocalExpirationInMinutes { get; set; }
+    
+    [Required]
+    [Range(1, int.MaxValue)]
+    public int DistributedExpirationInMinutes { get; set; }
 }

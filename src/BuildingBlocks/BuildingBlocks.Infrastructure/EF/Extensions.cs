@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,15 +13,19 @@ public static class Extensions
         this IServiceCollection     services,
         IConfiguration              configuration,
         string                      connectionName,
+        string                      schemaName,
         Action<IServiceCollection>? action = null
-    ) where TDbContext : DbContext
+    ) where TDbContext : DbContext, IUnitOfWork
     {
         string connectionString = configuration.GetConnectionStringOrThrow(connectionName);
 
         services.AddDbContext<TDbContext>((sp, options) =>
             {
                 options
-                    .UseNpgsql(connectionString)
+                    .UseNpgsql(
+                        connectionString,
+                        npgsqlOptions => npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, schemaName)
+                    )
                     .UseSnakeCaseNamingConvention();
 
                 IInterceptor[] interceptors = sp.GetServices<IInterceptor>()
@@ -32,6 +37,8 @@ public static class Extensions
                 }
             }
         );
+
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TDbContext>());
 
         action?.Invoke(services);
     }
