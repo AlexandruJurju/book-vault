@@ -13,12 +13,8 @@ IResourceBuilder<PostgresServerResource> postgres = builder
     .WithUserName(pgUser)
     .WithPassword(pgPass);
 
-IResourceBuilder<PostgresDatabaseResource> catalogDb = postgres.AddDatabase(CatalogResources.Database);
-IResourceBuilder<PostgresDatabaseResource> usersDb = postgres.AddDatabase(UsersResources.Database);
-
 builder.AddProject<BookShop_WebApi>("bookshop-webapi")
-    .WithReference(catalogDb).WaitFor(catalogDb)
-    .WithReference(usersDb).WaitFor(usersDb)
+    .WithReference(postgres).WaitFor(postgres)
     ;
 
 await builder.Build().RunAsync();

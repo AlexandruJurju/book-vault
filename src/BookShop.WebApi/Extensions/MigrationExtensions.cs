@@ -10,6 +10,7 @@ internal static class MigrationExtensions
     {
         using IServiceScope scope = app.ApplicationServices.CreateScope();
 
+        ApplyMigration<CatalogDbContext>(scope);
         ApplyMigration<UsersDbContext>(scope);
     }
 

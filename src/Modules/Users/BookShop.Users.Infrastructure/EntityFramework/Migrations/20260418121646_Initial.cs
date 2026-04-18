@@ -49,9 +49,9 @@ public partial class Initial : Migration
             name: "idx_outbox_messages_unprocessed",
             schema: "users",
             table: "outbox_messages",
-#pragma warning disable CA1861
-            columns: new[] { "occurred_on_utc", "processed_on_utc" },
+            columns: ["occurred_on_utc", "processed_on_utc"],
             filter: "\"processed_on_utc\" IS NULL")
+#pragma warning disable CA1861
             .Annotation("Npgsql:IndexInclude", new[] { "id", "type", "content" });
 #pragma warning restore CA1861
 

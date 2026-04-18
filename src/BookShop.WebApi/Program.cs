@@ -1,4 +1,5 @@
 using BookShop.ServiceDefaults;
+using BookShop.Shared.Aspire;
 using BookShop.WebApi;
 using BookShop.WebApi.Extensions;
 using BuildingBlocks.AspNetCore.Endpoints;
@@ -10,7 +11,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Configuration.AddModuleConfiguration(["users"]);
+builder.Configuration.AddModuleConfiguration([Services.Users, Services.Catalog]);
 
 builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();

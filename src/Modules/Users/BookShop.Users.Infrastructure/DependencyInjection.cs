@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using TickerQ.DependencyInjection;
 
 namespace BookShop.Users.Infrastructure;
 
@@ -20,15 +21,33 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.TryAddScoped<IInterceptor, InsertDomainEventsInterceptor>();
-        services.AddCustomPostgresDbContext<UsersDbContext>(configuration, UsersResources.Database, Schemas.Users);
+        services.AddCustomPostgresDbContext<UsersDbContext>(configuration, Resources.Postgres, Services.Users);
         services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddCustomMemoryCache(configuration);
 
         services.AddTimeProvider();
 
-        services.AddOutbox<OutboxJob>(configuration);
+        AddOutbox(services, configuration);
 
         return services;
+    }
+
+    private static void AddOutbox(IServiceCollection services, IConfiguration configuration)
+    {
+        services
+            .AddOptionsWithValidateOnStart<OutboxJobOptions>()
+            .Bind(configuration.GetSection(OutboxJobOptions.ConfigurationSection))
+            .ValidateDataAnnotations();
+
+        OutboxJobOptions outboxJobOptions = configuration
+            .GetSection(OutboxJobOptions.ConfigurationSection)
+            .Get<OutboxJobOptions>()!;
+
+        services.AddTickerQ();
+
+        services.MapTicker<OutboxJob>()
+            .WithMaxConcurrency(1)
+            .WithCron(outboxJobOptions.Cron);
     }
 }

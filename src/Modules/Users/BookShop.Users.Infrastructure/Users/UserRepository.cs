@@ -17,7 +17,7 @@ internal sealed class UserRepository(
     public async Task<bool> ExistsAsync(string email, CancellationToken cancellationToken = default)
     {
         return await dbContext.Users
-            .AnyAsync(u => u.Email == new Email(email), cancellationToken);
+            .AnyAsync(u => u.Email == email, cancellationToken);
     }
 
     public void Add(User user)

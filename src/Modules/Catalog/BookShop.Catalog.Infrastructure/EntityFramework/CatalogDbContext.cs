@@ -1,4 +1,5 @@
 ﻿using BookShop.Catalog.Domain.Categories;
+using BookShop.Shared.Aspire;
 using BuildingBlocks.Application.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,7 @@ public sealed class CatalogDbContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema(Schemas.Catalog);
+        modelBuilder.HasDefaultSchema(Services.Catalog);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDbContext).Assembly);
     }
 }

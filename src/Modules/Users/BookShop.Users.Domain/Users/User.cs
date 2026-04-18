@@ -11,17 +11,17 @@ public sealed class User : Entity, IAggregateRoot
     {
     }
 
-    private User(Guid id, UserName userName, Email email)
+    private User(Guid id, string userName, string email)
         : base(id)
     {
         UserName = userName;
         Email = email;
     }
 
-    public UserName UserName { get; private set; }
-    public Email Email { get; private set; }
+    public string UserName { get; private set; }
+    public string Email { get; private set; }
 
-    public static User Create(UserName userName, Email email)
+    public static User Create(string userName, string email)
     {
         var user = new User(GuidHelper.NewGuid(), userName, email);
 

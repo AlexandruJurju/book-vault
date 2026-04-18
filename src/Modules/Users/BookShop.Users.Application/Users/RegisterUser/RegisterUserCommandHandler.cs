@@ -18,8 +18,8 @@ public sealed class RegisterUserCommandHandler(
         }
 
         var user = User.Create(
-            new UserName(request.UserName),
-            new Email(request.Email)
+            request.UserName,
+            request.Email
         );
 
         userRepository.Add(user);

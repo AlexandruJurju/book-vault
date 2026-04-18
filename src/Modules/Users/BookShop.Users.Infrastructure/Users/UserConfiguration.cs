@@ -13,13 +13,11 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(user => user.Id);
 
         builder.Property(user => user.UserName)
-            .HasMaxLength(200)
-            .HasConversion(firstName => firstName.Value, value => new UserName(value));
+            .HasMaxLength(200);
 
         builder.Property(user => user.Email)
             // RFC 5321
-            .HasMaxLength(254)
-            .HasConversion(email => email.Value, value => new Email(value));
+            .HasMaxLength(254);
 
         builder.HasIndex(user => user.Email).IsUnique();
     }

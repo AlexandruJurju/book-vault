@@ -10,7 +10,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddCustomPostgresDbContext<CatalogDbContext>(configuration, CatalogResources.Database, Schemas.Catalog);
+        services.AddCustomPostgresDbContext<CatalogDbContext>(configuration, Resources.Postgres, Services.Catalog);
 
         services.AddSingleton(TimeProvider.System);
 
