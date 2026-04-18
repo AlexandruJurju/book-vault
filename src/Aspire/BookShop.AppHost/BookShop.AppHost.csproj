@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\BookShop.Shared\BookShop.Shared.csproj"
+        <ProjectReference Include="..\BookShop.Shared\BookShop.Shared.csproj"
                           IsAspireProjectResource="false"
         />
         <ProjectReference Include="..\..\BookShop.WebApi\BookShop.WebApi.csproj"/>

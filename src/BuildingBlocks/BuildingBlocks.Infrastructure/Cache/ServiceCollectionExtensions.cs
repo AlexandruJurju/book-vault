@@ -1,6 +1,4 @@
-﻿using BookShop.Shared.Aspire;
-using BuildingBlocks.Infrastructure.Configuration;
-using Microsoft.Extensions.Caching.Hybrid;
+﻿using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
