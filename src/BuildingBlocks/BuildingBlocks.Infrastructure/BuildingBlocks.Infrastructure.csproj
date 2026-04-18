@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\BookShop.Shared\BookShop.Shared.csproj"/>
         <ProjectReference Include="..\BuildingBlocks.Application\BuildingBlocks.Application.csproj"/>
     </ItemGroup>
 

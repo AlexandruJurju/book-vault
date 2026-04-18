@@ -2,8 +2,8 @@
   "users": {
     "OutboxJob": {
       // every 5 seconds
-      "Cron": "*/5 * * * * *",
-      "BatchSize": 20
+      "Cron": "*/15 * * * * *",
+      "BatchSize": 25
     },
     "Caching": {
       // 10 MB = 10 * 1024 * 1024
