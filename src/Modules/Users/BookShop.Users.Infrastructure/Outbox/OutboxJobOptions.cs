@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BuildingBlocks.Infrastructure.Outbox;
+namespace BookShop.Users.Infrastructure.Outbox;
 
 public sealed class OutboxJobOptions
 {
     public const string ConfigurationSection = "OutboxJob";
+
+    [Required]
+    public string SchemaName { get; init; }
+
+    [Required]
+    public string ServiceName { get; init; }
 
     [Required]
     public string Cron { get; init; }

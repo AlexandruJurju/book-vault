@@ -7,6 +7,6 @@ public sealed class UserRegisteredDomainEventHandler : IDomainEventHandler<UserR
 {
     public async ValueTask Handle(UserRegisteredDomainEvent notification, CancellationToken cancellationToken)
     {
-        Console.WriteLine($"{nameof(UserRegisteredDomainEventHandler)} handle {notification.GetType().Name}");
+        Console.WriteLine($"{nameof(UserRegisteredDomainEventHandler)} handle {notification.UserId}");
     }
 }

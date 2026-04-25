@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using TickerQ.Dashboard.DependencyInjection;
 using TickerQ.DependencyInjection;
 
 namespace BookShop.Users.Infrastructure;
@@ -39,18 +40,23 @@ public static class DependencyInjection
 
     private static void AddOutboxProcessor(IServiceCollection services, IConfiguration configuration)
     {
+        IConfigurationSection section = configuration
+            .GetSection($"{Services.Users}:{OutboxJobOptions.ConfigurationSection}");
+
         services
             .AddOptionsWithValidateOnStart<OutboxJobOptions>()
-            .Bind(configuration.GetSection($"{Services.Users}:{OutboxJobOptions.ConfigurationSection}"))
+            .Bind(section)
             .ValidateDataAnnotations();
 
-        OutboxJobOptions outboxJobOptions = configuration
-            .GetSection($"{Services.Users}:{OutboxJobOptions.ConfigurationSection}")
-            .Get<OutboxJobOptions>()!;
+        OutboxJobOptions outboxJobOptions = section.Get<OutboxJobOptions>()!;
 
-        services.AddTickerQ();
+        services.AddTickerQ(opt =>
+        {
+            opt.AddDashboard();
+        });
 
-        services.MapTicker<OutboxJob>()
+        services
+            .MapTicker<OutboxJob>()
             .WithMaxConcurrency(1)
             .WithCron(outboxJobOptions.Cron);
     }
