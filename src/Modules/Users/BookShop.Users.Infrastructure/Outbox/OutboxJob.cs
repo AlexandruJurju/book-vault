@@ -1,6 +1,9 @@
-﻿using System.Data;
+﻿using System.Collections.Concurrent;
+using System.Data;
 using System.Data.Common;
+using System.Globalization;
 using System.Text.Json;
+using BookShop.Shared.Aspire;
 using BuildingBlocks.Application.Data;
 using BuildingBlocks.Infrastructure.Outbox;
 using Dapper;
@@ -20,21 +23,42 @@ public partial class OutboxJob(
     ILogger<OutboxJob> logger
 ) : ITickerFunction
 {
+    private static string ServiceName => Services.Users;
+    private static string SchemaName => Services.Users;
+
     public async Task ExecuteAsync(TickerFunctionContext context, CancellationToken cancellationToken = default)
     {
-        LogServiceBeginningToProcessOutboxMessages(outboxOptions.Value.ServiceName);
+        LogServiceBeginningToProcessOutboxMessages(ServiceName);
 
         await using DbConnection connection = await dbConnectionFactory.OpenConnectionAsync();
         await using DbTransaction transaction = await connection.BeginTransactionAsync(cancellationToken);
 
         IReadOnlyList<OutboxMessageResponse> outboxMessages = await GetOutboxMessagesAsync(connection, transaction);
+        var updateQueue = new ConcurrentQueue<OutboxUpdate>();
+        var typeCache = new ConcurrentDictionary<string, Type>();
 
+        await PublishMessagesAsync(outboxMessages, typeCache, updateQueue, cancellationToken);
+
+        await UpdateOutboxMessagesAsync(connection, transaction, updateQueue);
+
+        await transaction.CommitAsync(cancellationToken);
+
+        LogServiceCompletedProcessingOutboxMessages(ServiceName);
+    }
+
+    private async Task PublishMessagesAsync(
+        IReadOnlyList<OutboxMessageResponse> outboxMessages,
+        ConcurrentDictionary<string, Type> typeCache,
+        ConcurrentQueue<OutboxUpdate> updateQueue,
+        CancellationToken cancellationToken
+    )
+    {
         foreach (OutboxMessageResponse outboxMessage in outboxMessages)
         {
             Exception? exception = null;
             try
             {
-                Type messageType = Domain.AssemblyReference.Assembly.GetType(outboxMessage.Type)!;
+                Type messageType = GetOrAddMessageType(typeCache, outboxMessage.Type);
                 object domainEvent = JsonSerializer.Deserialize(outboxMessage.Content, messageType)!;
                 await publisher.Publish(domainEvent, cancellationToken);
             }
@@ -44,11 +68,46 @@ public partial class OutboxJob(
                 exception = ex;
             }
 
-            await UpdateOutboxMessageAsync(connection, transaction, outboxMessage, exception);
+            updateQueue.Enqueue(new OutboxUpdate(outboxMessage.Id, timeProvider.GetUtcNow().UtcDateTime, exception?.ToString()));
+        }
+    }
+
+    private static async Task UpdateOutboxMessagesAsync(
+        IDbConnection connection,
+        IDbTransaction transaction,
+        ConcurrentQueue<OutboxUpdate> updateQueue)
+    {
+        if (updateQueue.IsEmpty)
+        {
+            return;
         }
 
-        await transaction.CommitAsync(cancellationToken);
-        LogServiceCompletedProcessingOutboxMessages(outboxOptions.Value.ServiceName);
+        string updateSql =
+            $$"""
+                 UPDATE {{SchemaName}}.{{OutboxConstants.TableName}}
+                 SET processed_on_utc = v.processed_on_utc,
+                     error = v.error
+                 FROM (VALUES
+                     {0}
+                 ) AS v(id, processed_on_utc, error)
+                 WHERE {{SchemaName}}.{{OutboxConstants.TableName}}.id = v.id::uuid
+              """;
+
+        var updates = updateQueue.ToList();
+        string paramNames = string.Join(",", updates.Select((_, i) => $"(@Id{i}, @ProcessedOn{i}, @Error{i})"));
+
+        string formattedSql = string.Format(CultureInfo.InvariantCulture, updateSql, paramNames);
+
+        var parameters = new DynamicParameters();
+
+        for (int i = 0; i < updates.Count; i++)
+        {
+            parameters.Add($"Id{i}", updates[i].Id.ToString());
+            parameters.Add($"ProcessedOn{i}", updates[i].ProcessedOnUtc);
+            parameters.Add($"Error{i}", updates[i].Exception);
+        }
+
+        await connection.ExecuteAsync(formattedSql, parameters, transaction: transaction);
     }
 
     private async Task<IReadOnlyList<OutboxMessageResponse>> GetOutboxMessagesAsync(
@@ -62,42 +121,22 @@ public partial class OutboxJob(
                 id      AS {nameof(OutboxMessageResponse.Id)},
                 type    AS {nameof(OutboxMessageResponse.Type)},
                 content AS {nameof(OutboxMessageResponse.Content)}
-             FROM {outboxOptions.Value.SchemaName}.{OutboxConstants.TableName}
+             FROM {SchemaName}.{OutboxConstants.TableName}
              WHERE processed_on_utc IS NULL
              ORDER BY occurred_on_utc
              LIMIT {outboxOptions.Value.BatchSize}
              FOR UPDATE SKIP LOCKED
              """;
 
-        IEnumerable<OutboxMessageResponse> outboxMessages =
-            await connection.QueryAsync<OutboxMessageResponse>(sql, transaction: transaction);
+        IEnumerable<OutboxMessageResponse> outboxMessages = await connection.QueryAsync<OutboxMessageResponse>(sql, transaction: transaction);
 
         return outboxMessages.ToList();
     }
 
-    private async Task UpdateOutboxMessageAsync(
-        IDbConnection connection,
-        IDbTransaction transaction,
-        OutboxMessageResponse outboxMessage,
-        Exception? exception)
-    {
-        string sql =
-            $"""
-             UPDATE {outboxOptions.Value.SchemaName}.{OutboxConstants.TableName}
-             SET processed_on_utc = @ProcessedOnUtc,
-                 error            = @Error
-             WHERE id = @Id
-             """;
 
-        await connection.ExecuteAsync(
-            sql,
-            new
-            {
-                outboxMessage.Id,
-                ProcessedOnUtc = timeProvider.GetUtcNow(),
-                Error = exception?.ToString()
-            },
-            transaction);
+    private static Type GetOrAddMessageType(ConcurrentDictionary<string, Type> typeCache, string typeName)
+    {
+        return typeCache.GetOrAdd(typeName, name => Domain.AssemblyReference.Assembly.GetType(name)!);
     }
 
     [LoggerMessage(LogLevel.Information, "{Service} - Beginning to process outbox messages")]
