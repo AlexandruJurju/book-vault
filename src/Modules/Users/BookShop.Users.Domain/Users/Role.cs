@@ -2,8 +2,9 @@
 
 public sealed class Role
 {
-    public static readonly Role Member = new(1, "Member");
-
+    public static readonly Role Administrator = new(1, "Administrator");
+    public static readonly Role Registered = new(2, "Member");
+    
     public Role(int id, string name)
     {
         Id = id;

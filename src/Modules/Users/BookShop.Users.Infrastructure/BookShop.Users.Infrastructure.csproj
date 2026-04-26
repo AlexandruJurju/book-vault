@@ -9,11 +9,12 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\Aspire\BookShop.Shared\BookShop.Shared.csproj" />
         <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.Infrastructure\BuildingBlocks.Infrastructure.csproj"/>
-        <ProjectReference Include="..\..\Basket\BookShop.Basket.Application\BookShop.Basket.Application.csproj" />
         <ProjectReference Include="..\BookShop.Users.Application\BookShop.Users.Application.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Authentication\" />
+        <Folder Include="Authorization\" />
         <Folder Include="EntityFramework\Migrations\"/>
     </ItemGroup>
 

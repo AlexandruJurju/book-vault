@@ -21,11 +21,16 @@ public sealed class User : Entity, IAggregateRoot
     public string UserName { get; private set; }
     public string Email { get; private set; }
 
+    private readonly List<Role> _roles = new();
+    public IReadOnlyCollection<Role> Roles => _roles.ToList();
+
     public static User Create(string userName, string email)
     {
         var user = new User(GuidHelper.NewGuid(), userName, email);
 
         user.RaiseDomainEvent(new UserRegisteredDomainEvent(user.Id));
+
+        user._roles.Add(Role.Registered);
 
         return user;
     }

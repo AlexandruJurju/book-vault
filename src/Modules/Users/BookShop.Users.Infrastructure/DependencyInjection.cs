@@ -1,14 +1,16 @@
 ﻿using BookShop.Shared.Aspire;
+using BookShop.Users.Application.Abstractions;
 using BookShop.Users.Domain.Users;
 using BookShop.Users.Infrastructure.EntityFramework;
 using BookShop.Users.Infrastructure.Outbox;
 using BookShop.Users.Infrastructure.Users;
+using BuildingBlocks.Infrastructure.Authentication;
 using BuildingBlocks.Infrastructure.Cache;
 using BuildingBlocks.Infrastructure.Data;
 using BuildingBlocks.Infrastructure.EntityFramework;
 using BuildingBlocks.Infrastructure.EntityFramework.Interceptors;
-using BuildingBlocks.Infrastructure.Outbox;
 using BuildingBlocks.Infrastructure.Time;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,28 +22,33 @@ namespace BookShop.Users.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(
+        this WebApplicationBuilder builder
+    )
     {
+        IServiceCollection services = builder.Services;
+        ConfigurationManager configuration = builder.Configuration;
+
         services.AddTimeProvider();
 
         services.AddCustomMemoryCache(configuration, Services.Users);
 
-        services.AddCustomNpgsql(configuration, Resources.Postgres);
-
-        services.TryAddScoped<IInterceptor, InsertDomainEventsInterceptor>();
         services.AddCustomPostgresDbContext<UsersDbContext>(configuration, Resources.Postgres, Services.Users);
-
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUsersDbContext>(provider => provider.GetRequiredService<UsersDbContext>());
+        services.AddCustomNpgsql(configuration, Resources.Postgres);
+        services.TryAddScoped<IInterceptor, InsertDomainEventsInterceptor>();
 
         AddOutboxProcessor(services, configuration);
+
+        builder.AddCustomKeycloakAuthentication();
 
         return services;
     }
 
-    private static void AddOutboxProcessor(IServiceCollection services, IConfiguration configuration)
+    private static void AddOutboxProcessor(IServiceCollection services, ConfigurationManager configuration)
     {
         IConfigurationSection section = configuration
-            .GetSection($"{Services.Users}:{OutboxJobOptions.ConfigurationSection}");
+            .GetRequiredSection($"{Services.Users}:{OutboxJobOptions.ConfigurationSection}");
 
         services
             .AddOptionsWithValidateOnStart<OutboxJobOptions>()

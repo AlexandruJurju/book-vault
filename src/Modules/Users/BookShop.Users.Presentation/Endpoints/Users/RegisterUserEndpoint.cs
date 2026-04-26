@@ -14,14 +14,17 @@ internal sealed class RegisterUserEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("users", Handle)
+        app.MapPost("users/register", Handle)
             .WithTags(Tags.Users)
-            .AllowAnonymous();
+            .AllowAnonymous()
+            ;
     }
 
     private static async Task<IResult> Handle(RegisterUserRequest registerUserRequest, ISender sender, CancellationToken cancellationToken)
     {
-        Result<Guid> result = await sender.Send(new RegisterUserCommand(registerUserRequest.Username, registerUserRequest.Email, registerUserRequest.Password), cancellationToken);
+        Result<Guid> result =
+            await sender.Send(new RegisterUserCommand(registerUserRequest.Username, registerUserRequest.Email, registerUserRequest.Password),
+                cancellationToken);
 
         return result.ToMinimalApiResult();
     }

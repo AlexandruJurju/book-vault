@@ -14,11 +14,11 @@ public static class ServiceCollectionExtensions
     {
         services
             .AddOptionsWithValidateOnStart<CacheOptions>(serviceName)
-            .Bind(configuration.GetSection($"{serviceName}:{CacheOptions.ConfigurationSection}"))
+            .Bind(configuration.GetRequiredSection($"{serviceName}:{CacheOptions.ConfigurationSection}"))
             .ValidateDataAnnotations();
 
         CacheOptions cacheOptions = configuration
-            .GetSection($"{serviceName}:{CacheOptions.ConfigurationSection}")
+            .GetRequiredSection($"{serviceName}:{CacheOptions.ConfigurationSection}")
             .Get<CacheOptions>()!;
 
         services.AddHybridCache(options =>

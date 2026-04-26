@@ -13,12 +13,12 @@ public static class ServiceCollectionExtensions
     public static void AddCustomPostgresDbContext<TDbContext>(
         this IServiceCollection services,
         IConfiguration configuration,
-        string connectionName,
+        string resourceName,
         string service,
         Action<IServiceCollection>? action = null
     ) where TDbContext : DbContext, IUnitOfWork
     {
-        string connectionString = configuration.GetConnectionStringOrThrow(connectionName);
+        string connectionString = configuration.GetConnectionStringOrThrow(resourceName);
 
         services.AddDbContext<TDbContext>((sp, options) =>
             {

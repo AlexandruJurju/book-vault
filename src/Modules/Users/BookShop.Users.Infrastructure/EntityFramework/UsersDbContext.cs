@@ -1,4 +1,5 @@
 ﻿using BookShop.Shared.Aspire;
+using BookShop.Users.Application.Abstractions;
 using BookShop.Users.Domain.Users;
 using BuildingBlocks.Application.Data;
 using BuildingBlocks.Infrastructure.Outbox;
@@ -8,9 +9,10 @@ namespace BookShop.Users.Infrastructure.EntityFramework;
 
 public sealed class UsersDbContext(
     DbContextOptions<UsersDbContext> options
-) : DbContext(options), IUnitOfWork
+) : DbContext(options), IUnitOfWork, IUsersDbContext
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
