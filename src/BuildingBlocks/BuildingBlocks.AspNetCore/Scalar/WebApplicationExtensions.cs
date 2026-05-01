@@ -9,7 +9,10 @@ namespace BuildingBlocks.AspNetCore.Scalar;
 
 public static class WebApplicationExtensions
 {
-    public static void MapCustomScalar(this WebApplication app, IConfiguration configuration)
+    public static void MapCustomScalar(
+        this WebApplication app,
+        IConfiguration configuration
+    )
     {
         if (!app.Environment.IsDevelopment())
         {
@@ -19,8 +22,6 @@ public static class WebApplicationExtensions
         KeycloakOptions keycloak = configuration
             .GetRequiredSection(KeycloakOptions.SectionName)
             .Get<KeycloakOptions>()!;
-
-        string clientId = keycloak.ClientId;
 
         app.MapOpenApi();
 
@@ -33,7 +34,7 @@ public static class WebApplicationExtensions
                     flow =>
                     {
                         flow.WithPkce(Pkce.Sha256)
-                            .WithClientId(clientId)
+                            .WithClientId(keycloak.PublicClientId)
                             .AddBodyParameter("audience", "account");
 
                         flow.SelectedScopes = ["openid", "profile"];

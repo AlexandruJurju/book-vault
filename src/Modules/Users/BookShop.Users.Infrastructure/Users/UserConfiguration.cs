@@ -20,5 +20,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(254);
 
         builder.HasIndex(user => user.Email).IsUnique();
+
+        builder.HasIndex(u => u.IdentityId).IsUnique();
     }
 }

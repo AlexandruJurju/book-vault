@@ -6,19 +6,19 @@ namespace BuildingBlocks.Infrastructure.Cache;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddCustomMemoryCache(
+    public static IServiceCollection AddCustomCache(
         this IServiceCollection services,
-        IConfiguration configuration,
-        string serviceName
+        IConfiguration configuration
     )
     {
         services
-            .AddOptionsWithValidateOnStart<CacheOptions>(serviceName)
-            .Bind(configuration.GetRequiredSection($"{serviceName}:{CacheOptions.ConfigurationSection}"))
-            .ValidateDataAnnotations();
+            .AddOptionsWithValidateOnStart<CacheOptions>()
+            .Bind(configuration.GetRequiredSection(CacheOptions.ConfigurationSection))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         CacheOptions cacheOptions = configuration
-            .GetRequiredSection($"{serviceName}:{CacheOptions.ConfigurationSection}")
+            .GetRequiredSection(CacheOptions.ConfigurationSection)
             .Get<CacheOptions>()!;
 
         services.AddHybridCache(options =>

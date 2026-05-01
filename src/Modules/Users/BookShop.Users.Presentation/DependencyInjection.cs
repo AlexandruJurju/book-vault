@@ -1,5 +1,4 @@
-﻿using BookShop.Users.Application;
-using BookShop.Users.Infrastructure;
+﻿using BookShop.Users.Infrastructure;
 using BuildingBlocks.AspNetCore.Endpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,9 +11,7 @@ public static class DependencyInjection
     {
         builder.Services.AddEndpoints(typeof(DependencyInjection).Assembly);
 
-        builder.Services.AddApplication();
-
-        builder.AddInfrastructure();
+        builder.Services.AddInfrastructure(builder.Configuration);
 
         return builder.Services;
     }

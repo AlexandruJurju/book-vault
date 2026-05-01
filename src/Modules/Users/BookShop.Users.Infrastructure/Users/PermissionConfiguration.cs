@@ -15,8 +15,8 @@ internal sealed class PermissionConfiguration : IEntityTypeConfiguration<Permiss
         builder.Property(p => p.Name).HasMaxLength(100);
 
         builder.HasData(
-            Permission.GetUser,
-            Permission.ModifyUser
+            Permission.ReadUser,
+            Permission.UpdateUser
         );
     }
 }

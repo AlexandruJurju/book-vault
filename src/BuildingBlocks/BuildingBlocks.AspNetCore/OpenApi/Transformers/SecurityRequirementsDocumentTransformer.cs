@@ -14,7 +14,7 @@ internal sealed class SecurityRequirementsDocumentTransformer : IOpenApiDocument
         document.Security ??= [];
         document.Security.Add(new OpenApiSecurityRequirement
         {
-            [new OpenApiSecuritySchemeReference(OAuthDefaults.DisplayName)] = ["openid", "profile"],
+            [new OpenApiSecuritySchemeReference(OAuthDefaults.DisplayName)] = ["openid", "profile"]
         });
 
         return Task.CompletedTask;

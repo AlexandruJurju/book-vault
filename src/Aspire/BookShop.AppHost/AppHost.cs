@@ -15,12 +15,12 @@ IResourceBuilder<PostgresServerResource> postgres = builder
 IResourceBuilder<ParameterResource> keycloakAdminUsername = builder.AddParameter("keycloak-user", "admin", secret: false);
 IResourceBuilder<ParameterResource> keycloakAdminPassword = builder.AddParameter("keycloak-password", "admin", secret: true);
 IResourceBuilder<KeycloakResource> keycloak = builder
-    .AddKeycloak(Resources.Keycloak, port: 8080, adminUsername: keycloakAdminUsername, adminPassword: keycloakAdminPassword)
+    .AddKeycloak(Resources.Keycloak, 8080, keycloakAdminUsername, keycloakAdminPassword)
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume();
 
 IResourceBuilder<RedisResource> redis = builder
-    .AddRedis(Resources.Redis, port: 6379)
+    .AddRedis(Resources.Redis, 6379)
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume();
 

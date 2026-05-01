@@ -13,12 +13,11 @@ public static class ServiceCollectionExtensions
     public static void AddCustomPostgresDbContext<TDbContext>(
         this IServiceCollection services,
         IConfiguration configuration,
-        string resourceName,
-        string service,
-        Action<IServiceCollection>? action = null
+        string postgresResourceName,
+        string service
     ) where TDbContext : DbContext, IUnitOfWork
     {
-        string connectionString = configuration.GetConnectionStringOrThrow(resourceName);
+        string connectionString = configuration.GetConnectionStringOrThrow(postgresResourceName);
 
         services.AddDbContext<TDbContext>((sp, options) =>
             {
@@ -41,8 +40,36 @@ public static class ServiceCollectionExtensions
         );
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TDbContext>());
+    }
 
+    public static void AddCustomPostgresDbContext<TDbContext>(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        string postgresResourceName
+    ) where TDbContext : DbContext, IUnitOfWork
+    {
+        string connectionString = configuration.GetConnectionStringOrThrow(postgresResourceName);
 
-        action?.Invoke(services);
+        services.AddDbContext<TDbContext>((sp, options) =>
+            {
+                options
+                    .UseNpgsql(
+                        connectionString,
+                        npgsqlOptions =>
+                            npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName)
+                    )
+                    .UseSnakeCaseNamingConvention();
+
+                IInterceptor[] interceptors = sp.GetServices<IInterceptor>()
+                    .ToArray();
+
+                if (interceptors.Length != 0)
+                {
+                    options.AddInterceptors(interceptors);
+                }
+            }
+        );
+
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TDbContext>());
     }
 }

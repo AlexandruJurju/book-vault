@@ -12,10 +12,4 @@ public sealed class OutboxJobOptions
     [Required]
     [Range(1, int.MaxValue)]
     public int BatchSize { get; init; }
-
-    [Required]
-    public string ServiceName { get; init; }
-
-    [Required]
-    public string SchemaName { get; init; }
 }

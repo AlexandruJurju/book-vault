@@ -6,6 +6,8 @@ namespace BookShop.Users.Domain.Users;
 
 public sealed class User : Entity, IAggregateRoot
 {
+    private readonly List<Role> _roles = new();
+
     // For EF Core
     private User()
     {
@@ -20,8 +22,7 @@ public sealed class User : Entity, IAggregateRoot
 
     public string UserName { get; private set; }
     public string Email { get; private set; }
-
-    private readonly List<Role> _roles = new();
+    public string IdentityId { get; private set; }
     public IReadOnlyCollection<Role> Roles => _roles.ToList();
 
     public static User Create(string userName, string email)

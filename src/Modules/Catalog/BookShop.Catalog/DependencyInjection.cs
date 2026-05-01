@@ -1,9 +1,7 @@
 ﻿using BookShop.Catalog.Infrastructure.EntityFramework;
 using BookShop.Shared.Aspire;
 using BuildingBlocks.AspNetCore.Endpoints;
-using BuildingBlocks.Infrastructure.Data;
 using BuildingBlocks.Infrastructure.EntityFramework;
-using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,8 +14,6 @@ public static class DependencyInjection
     {
         builder.Services.AddPresentation();
 
-        builder.Services.AddApplication();
-
         builder.Services.AddInfrastructure(builder.Configuration);
 
         return builder.Services;
@@ -26,13 +22,6 @@ public static class DependencyInjection
     private static IServiceCollection AddPresentation(this IServiceCollection services)
     {
         services.AddEndpoints(typeof(DependencyInjection).Assembly);
-        
-        return services;
-    }
-
-    private static IServiceCollection AddApplication(this IServiceCollection services)
-    {
-        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly, includeInternalTypes: true);
 
         return services;
     }

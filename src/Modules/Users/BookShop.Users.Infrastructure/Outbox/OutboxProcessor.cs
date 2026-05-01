@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Text.Json;
+using BookShop.Users.Domain;
 using BuildingBlocks.Application.Data;
 using BuildingBlocks.Infrastructure.Outbox;
 using Dapper;
@@ -19,8 +20,8 @@ public sealed class OutboxProcessor(
     ILogger<OutboxProcessor> logger
 )
 {
-    private string SchemaName => outboxOptions.Value.SchemaName;
-    private string ServiceName => outboxOptions.Value.ServiceName;
+    private static string SchemaName => "users";
+    private static string ServiceName => "users";
 
     public async Task<int> ProcessAsync(CancellationToken cancellationToken = default)
     {
@@ -109,7 +110,7 @@ public sealed class OutboxProcessor(
             Errors = updateQueue.Select(x => x.Exception).ToArray()
         };
 
-        await connection.ExecuteAsync(updateSql, parameters, transaction: transaction);
+        await connection.ExecuteAsync(updateSql, parameters, transaction);
     }
 
     private async Task<IReadOnlyList<OutboxMessageResponse>> GetOutboxMessagesAsync(
@@ -138,6 +139,6 @@ public sealed class OutboxProcessor(
 
     private static Type GetOrAddMessageType(ConcurrentDictionary<string, Type> typeCache, string typeName)
     {
-        return typeCache.GetOrAdd(typeName, name => Domain.AssemblyReference.Assembly.GetType(name)!);
+        return typeCache.GetOrAdd(typeName, name => AssemblyReference.Assembly.GetType(name)!);
     }
 }

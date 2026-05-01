@@ -1,7 +1,7 @@
 ﻿using BookShop.Users.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookShop.Users.Application.Abstractions;
+namespace BookShop.Users.Application.Abstractions.Data;
 
 public interface IUsersDbContext
 {

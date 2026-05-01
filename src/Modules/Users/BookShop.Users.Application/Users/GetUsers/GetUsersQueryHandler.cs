@@ -1,5 +1,5 @@
 ﻿using Ardalis.Result;
-using BookShop.Users.Application.Abstractions;
+using BookShop.Users.Application.Abstractions.Data;
 using BuildingBlocks.Application.CQRS;
 using Microsoft.EntityFrameworkCore;
 

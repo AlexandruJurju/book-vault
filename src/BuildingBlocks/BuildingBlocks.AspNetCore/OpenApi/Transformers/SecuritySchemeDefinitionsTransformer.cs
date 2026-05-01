@@ -16,21 +16,22 @@ internal sealed class SecuritySchemeDefinitionsTransformer(IConfiguration config
         {
             Type = SecuritySchemeType.OAuth2,
             Description = "OAuth2 security scheme for the Bookshop",
-            Flows = new()
+            Flows = new OpenApiOAuthFlows
             {
-                AuthorizationCode = new()
+                AuthorizationCode = new OpenApiOAuthFlow
                 {
-                    Scopes = new Dictionary<string, string>()
+                    Scopes = new Dictionary<string, string>
                     {
                         { "openid", "openid" },
-                        { "profile", "profile" },
+                        { "profile", "profile" }
                     },
-                    AuthorizationUrl = KeycloakEndpoints.ToUri(keycloakOptions.BaseUrl, KeycloakEndpoints.Authorize(keycloakOptions.Realm)),
-                    TokenUrl = KeycloakEndpoints.ToUri(keycloakOptions.BaseUrl, KeycloakEndpoints.Token(keycloakOptions.Realm)),
-                },
-            },
+                    AuthorizationUrl = new Uri(keycloakOptions.AuthorizeUrl),
+                    TokenUrl = new Uri(keycloakOptions.TokenUrl)
+                }
+            }
         };
-        document.Components ??= new();
+
+        document.Components ??= new OpenApiComponents();
         document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
         document.Components.SecuritySchemes.Add(OAuthDefaults.DisplayName, securityScheme);
     }

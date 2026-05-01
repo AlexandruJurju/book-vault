@@ -1,5 +1,5 @@
 ﻿using BookShop.Shared.Aspire;
-using BookShop.Users.Application.Abstractions;
+using BookShop.Users.Application.Abstractions.Data;
 using BookShop.Users.Domain.Users;
 using BuildingBlocks.Application.Data;
 using BuildingBlocks.Infrastructure.Outbox;

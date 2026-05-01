@@ -13,11 +13,32 @@ public sealed class KeycloakOptions
     public string Realm { get; init; }
 
     [Required]
-    public string ClientId { get; init; }
+    public string PublicClientId { get; init; }
 
-    [Required]
-    public string Audience { get; init; }
+    public string ConfidentialClientId { get; init; }
+
+    public string ConfidentialClientSecret { get; init; }
+
+    private string Base => BaseUrl.TrimEnd('/');
 
     public string Issuer
-        => $"{BaseUrl.TrimEnd('/')}/realms/{Realm}";
+        => $"{Base}/realms/{Realm}";
+
+    public string AdminUrl
+        => $"{Base}/admin/realms/{Realm}/";
+
+    public string TokenUrl
+        => $"{Base}/realms/{Realm}/protocol/openid-connect/token";
+
+    public string AuthorizeUrl
+        => $"{Base}/realms/{Realm}/protocol/openid-connect/auth";
+
+    public string IntrospectUrl
+        => $"{Base}/realms/{Realm}/protocol/openid-connect/token/introspect";
+
+    public string LogoutUrl
+        => $"{Base}/realms/{Realm}/protocol/openid-connect/logout";
+
+    public string MetadataUrl
+        => $"{Base}/realms/{Realm}/.well-known/openid-configuration";
 }
