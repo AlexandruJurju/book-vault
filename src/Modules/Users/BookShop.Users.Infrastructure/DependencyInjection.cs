@@ -47,6 +47,14 @@ public static class DependencyInjection
 
     private static void AddOutboxProcessor(IServiceCollection services, ConfigurationManager configuration)
     {
+        services.AddTickerQ(opt =>
+        {
+            opt.AddDashboard(dashboard =>
+            {
+                dashboard.SetBasePath("/management/jobs");
+            });
+        });
+
         IConfigurationSection section = configuration
             .GetRequiredSection($"{Services.Users}:{OutboxJobOptions.ConfigurationSection}");
 
@@ -55,12 +63,10 @@ public static class DependencyInjection
             .Bind(section)
             .ValidateDataAnnotations();
 
-        OutboxJobOptions outboxJobOptions = section.Get<OutboxJobOptions>()!;
+        services.AddScoped<OutboxProcessor>();
+        services.AddScoped<OutboxJob>();
 
-        services.AddTickerQ(opt =>
-        {
-            opt.AddDashboard();
-        });
+        OutboxJobOptions outboxJobOptions = section.Get<OutboxJobOptions>()!;
 
         services
             .MapTicker<OutboxJob>()
