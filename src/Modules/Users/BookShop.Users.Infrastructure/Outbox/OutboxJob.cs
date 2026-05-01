@@ -1,7 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Data;
 using System.Data.Common;
-using System.Globalization;
 using System.Text.Json;
 using BookShop.Shared.Aspire;
 using BuildingBlocks.Application.Data;
@@ -10,6 +9,7 @@ using Dapper;
 using Mediator;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TickerQ.Exceptions;
 using TickerQ.Utilities.Base;
 using TickerQ.Utilities.Interfaces;
 
@@ -34,6 +34,12 @@ public partial class OutboxJob(
         await using DbTransaction transaction = await connection.BeginTransactionAsync(cancellationToken);
 
         IReadOnlyList<OutboxMessageResponse> outboxMessages = await GetOutboxMessagesAsync(connection, transaction);
+
+        if (outboxMessages.Count == 0)
+        {
+            throw new TerminateExecutionException("No outbox messages to process");
+        }
+
         var updateQueue = new ConcurrentQueue<OutboxUpdate>();
         var typeCache = new ConcurrentDictionary<string, Type>();
 
@@ -87,27 +93,19 @@ public partial class OutboxJob(
                  UPDATE {{SchemaName}}.{{OutboxConstants.TableName}}
                  SET processed_on_utc = v.processed_on_utc,
                      error = v.error
-                 FROM (VALUES
-                     {0}
-                 ) AS v(id, processed_on_utc, error)
+                 FROM UNNEST(@Ids, @ProcessedAts, @Errors)
+                    AS v(id, processed_on_utc, error)
                  WHERE {{SchemaName}}.{{OutboxConstants.TableName}}.id = v.id::uuid
               """;
 
-        var updates = updateQueue.ToList();
-        string paramNames = string.Join(",", updates.Select((_, i) => $"(@Id{i}, @ProcessedOn{i}, @Error{i})"));
-
-        string formattedSql = string.Format(CultureInfo.InvariantCulture, updateSql, paramNames);
-
-        var parameters = new DynamicParameters();
-
-        for (int i = 0; i < updates.Count; i++)
+        var parameters = new
         {
-            parameters.Add($"Id{i}", updates[i].Id.ToString());
-            parameters.Add($"ProcessedOn{i}", updates[i].ProcessedOnUtc);
-            parameters.Add($"Error{i}", updates[i].Exception);
-        }
+            Ids = updateQueue.Select(x => x.Id).ToArray(),
+            ProcessedAts = updateQueue.Select(x => x.ProcessedOnUtc).ToArray(),
+            Errors = updateQueue.Select(x => x.Exception).ToArray()
+        };
 
-        await connection.ExecuteAsync(formattedSql, parameters, transaction: transaction);
+        await connection.ExecuteAsync(updateSql, parameters, transaction: transaction);
     }
 
     private async Task<IReadOnlyList<OutboxMessageResponse>> GetOutboxMessagesAsync(
