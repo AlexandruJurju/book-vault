@@ -10,7 +10,7 @@ using IResult = Microsoft.AspNetCore.Http.IResult;
 
 namespace BookShop.Users.Presentation.Endpoints.Users;
 
-internal sealed class RegisterUserEndpoint : IEndpoint
+internal sealed class RegisterUser : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {

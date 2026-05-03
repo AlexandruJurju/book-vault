@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions.Authentication;
+﻿using BuildingBlocks.Application.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BuildingBlocks.Infrastructure.Authentication;

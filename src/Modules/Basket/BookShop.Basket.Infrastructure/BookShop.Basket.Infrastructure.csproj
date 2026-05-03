@@ -10,6 +10,7 @@
         <ProjectReference Include="..\..\..\Aspire\BookShop.Shared\BookShop.Shared.csproj"/>
         <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.Infrastructure\BuildingBlocks.Infrastructure.csproj"/>
         <ProjectReference Include="..\BookShop.Basket.Application\BookShop.Basket.Application.csproj"/>
+        <ProjectReference Include="..\..\Users\BookShop.Users.IntegrationEvents\BookShop.Users.IntegrationEvents.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

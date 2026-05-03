@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.Application.Abstractions.Authorization;
+﻿namespace BuildingBlocks.Application.Authorization;
 
 public sealed record PermissionsResponse(
     Guid UserId,

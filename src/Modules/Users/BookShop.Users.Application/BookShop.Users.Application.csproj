@@ -9,6 +9,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.Application\BuildingBlocks.Application.csproj"/>
         <ProjectReference Include="..\BookShop.Users.Domain\BookShop.Users.Domain.csproj"/>
+        <ProjectReference Include="..\BookShop.Users.IntegrationEvents\BookShop.Users.IntegrationEvents.csproj" />
     </ItemGroup>
 
     <ItemGroup>

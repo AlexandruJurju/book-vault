@@ -13,11 +13,12 @@ public sealed class User : Entity, IAggregateRoot
     {
     }
 
-    private User(Guid id, string userName, string email)
+    private User(Guid id, string userName, string email, string identityId)
         : base(id)
     {
         UserName = userName;
         Email = email;
+        IdentityId = identityId;
     }
 
     public string UserName { get; private set; }
@@ -25,9 +26,9 @@ public sealed class User : Entity, IAggregateRoot
     public string IdentityId { get; private set; }
     public IReadOnlyCollection<Role> Roles => _roles.ToList();
 
-    public static User Create(string userName, string email)
+    public static User Create(string userName, string email, string identityId)
     {
-        var user = new User(GuidHelper.NewGuid(), userName, email);
+        var user = new User(GuidHelper.NewGuid(), userName, email, identityId);
 
         user.RaiseDomainEvent(new UserRegisteredDomainEvent(user.Id));
 

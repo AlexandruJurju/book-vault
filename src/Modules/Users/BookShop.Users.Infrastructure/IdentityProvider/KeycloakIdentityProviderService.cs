@@ -12,11 +12,13 @@ internal sealed class KeycloakIdentityProviderService(
 {
     private const string PasswordCredentialType = "Password";
 
-    public async Task<Result<string>> RegisterAsync(UserModel user, string password, CancellationToken cancellationToken = default)
+    public async Task<Result<string>> RegisterUserAsync(UserModel user, CancellationToken cancellationToken = default)
     {
         var userRepresentation = new UserRepresentation(
             user.UserName,
             user.Email,
+            string.Empty,
+            string.Empty,
             true,
             true,
             [new CredentialRepresentation(PasswordCredentialType, user.Password, false)]

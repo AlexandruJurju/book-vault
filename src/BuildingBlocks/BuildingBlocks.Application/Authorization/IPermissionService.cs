@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
 
-namespace BuildingBlocks.Application.Abstractions.Authorization;
+namespace BuildingBlocks.Application.Authorization;
 
 public interface IPermissionService
 {

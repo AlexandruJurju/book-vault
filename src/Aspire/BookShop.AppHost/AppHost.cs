@@ -24,10 +24,19 @@ IResourceBuilder<RedisResource> redis = builder
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume();
 
+IResourceBuilder<ParameterResource> rabbitMqUser = builder.AddParameter("rabbitmq-user", "rabbitmq", secret: false);
+IResourceBuilder<ParameterResource> rabbitMqPassword = builder.AddParameter("rabbitmq-password", "rabbitmq", secret: true);
+IResourceBuilder<RabbitMQServerResource> rabbitMq = builder
+    .AddRabbitMQ(Resources.RabbitMq, userName: rabbitMqUser, password: rabbitMqPassword, port: 5672)
+    .WithLifetime(ContainerLifetime.Persistent)
+    .WithDataVolume()
+    .WithManagementPlugin();
+
 builder.AddProject<BookShop_WebApi>("bookshop-webapi")
     .WithReference(postgres).WaitFor(postgres)
     .WithReference(keycloak).WaitFor(keycloak)
     .WithReference(redis).WaitFor(redis)
+    .WithReference(rabbitMq).WaitFor(rabbitMq)
     ;
 
 await builder.Build().RunAsync();

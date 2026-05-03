@@ -6,4 +6,9 @@ public static class UserErrors
     {
         return $"There already is an user with the email {email}";
     }
+    
+    public static string NotFound(Guid id)
+    {
+        return $"User with id {id} not found";
+    }
 }

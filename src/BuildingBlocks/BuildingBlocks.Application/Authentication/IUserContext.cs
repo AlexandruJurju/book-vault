@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.Application.Abstractions.Authentication;
+﻿namespace BuildingBlocks.Application.Authentication;
 
 public interface IUserContext
 {

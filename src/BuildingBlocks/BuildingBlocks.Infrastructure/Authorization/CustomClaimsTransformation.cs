@@ -1,7 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Ardalis.Result;
-using BuildingBlocks.Application.Abstractions.Authorization;
+using BuildingBlocks.Application.Authorization;
 using BuildingBlocks.Common.Helpers;
 using BuildingBlocks.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication;

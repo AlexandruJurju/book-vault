@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
         IConfiguration configuration,
         string postgresResourceName,
         string service
-    ) where TDbContext : DbContext, IUnitOfWork
+    ) where TDbContext : DbContext
     {
         string connectionString = configuration.GetConnectionStringOrThrow(postgresResourceName);
 
@@ -38,15 +38,13 @@ public static class ServiceCollectionExtensions
                 }
             }
         );
-
-        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TDbContext>());
     }
 
     public static void AddCustomPostgresDbContext<TDbContext>(
         this IServiceCollection services,
         IConfiguration configuration,
         string postgresResourceName
-    ) where TDbContext : DbContext, IUnitOfWork
+    ) where TDbContext : DbContext
     {
         string connectionString = configuration.GetConnectionStringOrThrow(postgresResourceName);
 
@@ -69,7 +67,5 @@ public static class ServiceCollectionExtensions
                 }
             }
         );
-
-        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TDbContext>());
     }
 }

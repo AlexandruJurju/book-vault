@@ -1,14 +1,18 @@
 ﻿using System.Reflection;
 using BookShop.Shared.Aspire;
 using BuildingBlocks.Application.CQRS.Behaviors;
+using BuildingBlocks.Application.EventBus;
 using BuildingBlocks.AspNetCore.OpenApi;
 using BuildingBlocks.Infrastructure.Authentication;
 using BuildingBlocks.Infrastructure.Authorization;
 using BuildingBlocks.Infrastructure.Cache;
 using BuildingBlocks.Infrastructure.Data;
 using BuildingBlocks.Infrastructure.EntityFramework.Interceptors;
+using BuildingBlocks.Infrastructure.EventBus;
 using FluentValidation;
+using MassTransit;
 using Mediator;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TickerQ.Dashboard.DependencyInjection;
 using TickerQ.DependencyInjection;
@@ -24,7 +28,7 @@ internal static class DependencyInjection
 
     public static void AddApplication(this IServiceCollection services, Assembly[] moduleAssemblies)
     {
-        services.AddMediator(options =>
+        services.AddMediator((MediatorOptions options) =>
         {
             options.ServiceLifetime = ServiceLifetime.Scoped;
         });
@@ -35,18 +39,24 @@ internal static class DependencyInjection
         services.AddValidatorsFromAssemblies(moduleAssemblies, includeInternalTypes: true);
     }
 
-    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructure(this IServiceCollection services,
+        IConfiguration configuration,
+        Action<IRegistrationConfigurator, string>[] moduleConfigureConsumers
+    )
     {
         services.AddCustomAuthentication();
 
         services.AddCustomAuthorization();
 
-        services.TryAddSingleton(TimeProvider.System);
-
         services.AddCustomCache(configuration);
 
+        services.AddCustomMassTransit(moduleConfigureConsumers);
+
         services.AddCustomNpgsql(configuration, Resources.Postgres);
-        services.TryAddSingleton<InsertOutboxMessagesInterceptor>();
+        services.AddScoped<IInterceptor, InsertOutboxMessagesInterceptor>();
+        services.AddScoped<IInterceptor, SoftDeleteInterceptor>();
+        services.AddScoped<IInterceptor, AuditableEntityInterceptor>();
+        services.AddScoped<IInterceptor, SlowQueryInterceptor>();
 
         services.AddTickerQ(opt =>
         {
@@ -55,5 +65,7 @@ internal static class DependencyInjection
                 dashboard.SetBasePath("/management/jobs");
             });
         });
+
+        services.TryAddSingleton(TimeProvider.System);
     }
 }

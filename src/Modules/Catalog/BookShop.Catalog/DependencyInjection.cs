@@ -1,4 +1,5 @@
-﻿using BookShop.Catalog.Infrastructure.EntityFramework;
+﻿using BookShop.Catalog.Application.Abstractions.Data;
+using BookShop.Catalog.Infrastructure.EntityFramework;
 using BookShop.Shared.Aspire;
 using BuildingBlocks.AspNetCore.Endpoints;
 using BuildingBlocks.Infrastructure.EntityFramework;
@@ -29,8 +30,7 @@ public static class DependencyInjection
     private static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddCustomPostgresDbContext<CatalogDbContext>(configuration, Resources.Postgres, Services.Catalog);
-
-        services.AddSingleton(TimeProvider.System);
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<CatalogDbContext>());
 
         return services;
     }

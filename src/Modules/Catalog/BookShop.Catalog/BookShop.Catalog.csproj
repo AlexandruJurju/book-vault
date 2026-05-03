@@ -15,8 +15,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Application\"/>
+        <Folder Include="Application\Categories\CreateCategory\" />
         <Folder Include="Domain\"/>
+        <Folder Include="Endpoints\Categories\" />
         <Folder Include="Infrastructure\"/>
     </ItemGroup>
 

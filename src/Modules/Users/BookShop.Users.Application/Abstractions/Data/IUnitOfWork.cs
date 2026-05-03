@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.Application.Data;
+﻿namespace BookShop.Users.Application.Abstractions.Data;
 
 public interface IUnitOfWork
 {

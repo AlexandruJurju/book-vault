@@ -1,7 +1,6 @@
-﻿namespace BookShop.Users.Application.Users;
+﻿namespace BookShop.Users.Application.Users.GetUser;
 
 public sealed record UserResponse(
     Guid Id,
-    string Username,
     string Email
 );

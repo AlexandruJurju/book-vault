@@ -5,7 +5,7 @@ using BookShop.Users.Infrastructure.Authorization;
 using BookShop.Users.Infrastructure.EntityFramework;
 using BookShop.Users.Infrastructure.IdentityProvider;
 using BookShop.Users.Infrastructure.Outbox;
-using BuildingBlocks.Application.Abstractions.Authorization;
+using BuildingBlocks.Application.Authorization;
 using BuildingBlocks.Infrastructure.EntityFramework;
 using BuildingBlocks.Infrastructure.Keycloak;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +24,7 @@ public static class DependencyInjection
     {
         services.AddCustomPostgresDbContext<UsersDbContext>(configuration, Resources.Postgres, Services.Users);
         services.AddScoped<IUsersDbContext>(provider => provider.GetRequiredService<UsersDbContext>());
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<UsersDbContext>());
 
         services.AddScoped<IPermissionService, PermissionService>();
 

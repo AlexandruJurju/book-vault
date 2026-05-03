@@ -1,6 +1,6 @@
-﻿using BookShop.Catalog.Domain.Categories;
+﻿using BookShop.Catalog.Application.Abstractions.Data;
+using BookShop.Catalog.Domain.Categories;
 using BookShop.Shared.Aspire;
-using BuildingBlocks.Application.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Catalog.Infrastructure.EntityFramework;

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace BookShop.Users.Presentation.Endpoints.Users;
 
-internal sealed class GetUsersEndpoint : IEndpoint
+internal sealed class GetUsers : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
