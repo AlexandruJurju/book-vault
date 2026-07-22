@@ -1,9 +1,8 @@
-﻿using BuildingBlocks.Common.Helpers;
-
+﻿
 namespace BuildingBlocks.Domain;
 
 public abstract class AuditableEntity : Entity
 {
-    public DateTime CreatedAtUtc { get; set; } = DateTimeHelper.UtcNow();
+    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAtUtc { get; set; }
 }

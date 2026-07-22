@@ -1,6 +1,9 @@
-﻿namespace BuildingBlocks.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BuildingBlocks.Domain;
 
 public interface IHasConcurrency
 {
-    int Version { get; set; }
+    [Timestamp]
+    uint Version { get; set; }
 }

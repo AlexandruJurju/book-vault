@@ -7,7 +7,6 @@ IResourceBuilder<ParameterResource> pgUser = builder.AddParameter("postgres-user
 IResourceBuilder<ParameterResource> pgPassword = builder.AddParameter("postgres-password", "super-secret-password", secret: true);
 IResourceBuilder<PostgresServerResource> postgres = builder
     .AddPostgres(Resources.Postgres, port: 5432)
-    .WithImageTag("18.3")
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume()
     .WithUserName(pgUser)
@@ -17,7 +16,6 @@ IResourceBuilder<ParameterResource> keycloakAdminUsername = builder.AddParameter
 IResourceBuilder<ParameterResource> keycloakAdminPassword = builder.AddParameter("keycloak-password", "admin", secret: true);
 IResourceBuilder<KeycloakResource> keycloak = builder
     .AddKeycloak(Resources.Keycloak, 8080, keycloakAdminUsername, keycloakAdminPassword)
-    .WithImageTag("26.5")
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume();
 

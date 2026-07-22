@@ -4,7 +4,7 @@ using BookShop.Users.Domain.Users.Events;
 using BookShop.Users.IntegrationEvents;
 using BuildingBlocks.Application.CQRS;
 using BuildingBlocks.Application.EventBus;
-using BuildingBlocks.Common.Helpers;
+using BuildingBlocks.Common.Extensions;
 using GetUser_UserResponse = BookShop.Users.Application.Users.GetUser.UserResponse;
 
 namespace BookShop.Users.Application.Users.RegisterUser;
@@ -26,7 +26,7 @@ public sealed class UserRegisteredDomainEventHandler(
         await bus.PublishAsync(
             new UserRegisteredIntegrationEvent(
                 domainEvent.Id,
-                domainEvent.OccurredOnUtc,
+                domainEvent.OccurredAtUtc,
                 result.Value.Id,
                 result.Value.Email
             ),

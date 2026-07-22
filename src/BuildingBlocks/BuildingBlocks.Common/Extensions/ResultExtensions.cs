@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
 
-namespace BuildingBlocks.Common.Helpers;
+namespace BuildingBlocks.Common.Extensions;
 
 public static class ResultExtensions
 {

@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using Ardalis.Result;
 using BuildingBlocks.Application.Authorization;
-using BuildingBlocks.Common.Helpers;
+using BuildingBlocks.Common.Extensions;
 using BuildingBlocks.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;

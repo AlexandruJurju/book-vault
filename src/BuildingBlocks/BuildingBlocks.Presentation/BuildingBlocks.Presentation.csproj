@@ -1,19 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-        <PackageReference Include="Ardalis.Result.AspNetCore" />
-        <PackageReference Include="Ardalis.Result.FluentValidation" />
-        <PackageReference Include="Aspire.Keycloak.Authentication" />
-        <PackageReference Include="FluentValidation" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-        <PackageReference Include="Scalar.AspNetCore" />
-        <PackageReference Include="Scalar.AspNetCore.Microsoft" />
-        <PackageReference Include="Serilog.AspNetCore" />
+        <PackageReference Include="Ardalis.Result.AspNetCore"/>
+        <PackageReference Include="Ardalis.Result.FluentValidation"/>
+        <PackageReference Include="Aspire.Keycloak.Authentication"/>
+        <PackageReference Include="FluentValidation"/>
+        <PackageReference Include="Scalar.AspNetCore"/>
+        <PackageReference Include="Scalar.AspNetCore.Microsoft"/>
+        <PackageReference Include="Serilog.AspNetCore"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BuildingBlocks.Application\BuildingBlocks.Application.csproj" />
-        <ProjectReference Include="..\BuildingBlocks.Infrastructure\BuildingBlocks.Infrastructure.csproj" />
+        <ProjectReference Include="..\BuildingBlocks.Application\BuildingBlocks.Application.csproj"/>
+        <ProjectReference Include="..\BuildingBlocks.Infrastructure\BuildingBlocks.Infrastructure.csproj"/>
     </ItemGroup>
 
+    <PropertyGroup>
+        <InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.AspNetCore.OpenApi.Generated</InterceptorsNamespaces>
+    </PropertyGroup>
 </Project>

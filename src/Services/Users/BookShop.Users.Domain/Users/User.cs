@@ -1,4 +1,5 @@
 ﻿using BookShop.Users.Domain.Users.Events;
+using BuildingBlocks.Common.Extensions;
 using BuildingBlocks.Common.Helpers;
 using BuildingBlocks.Domain;
 
@@ -28,7 +29,7 @@ public sealed class User : Entity, IAggregateRoot
 
     public static User Create(string userName, string email, string identityId)
     {
-        var user = new User(GuidHelper.NewGuid(), userName, email, identityId);
+        var user = new User(GuidProvider.NewGuid(), userName, email, identityId);
 
         user.RaiseDomainEvent(new UserRegisteredDomainEvent(user.Id));
 
