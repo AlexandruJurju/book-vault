@@ -11,9 +11,4 @@
         <PackageReference Include="Serilog" />
         <PackageReference Include="Serilog.AspNetCore" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="CQRS\Behaviors\" />
-    </ItemGroup>
-
 </Project>

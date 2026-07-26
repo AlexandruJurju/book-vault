@@ -1,5 +1,4 @@
-﻿using BookShop.Shared;
-using BuildingBlocks.Application.EventBus;
+﻿using BuildingBlocks.Application.EventBus;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +10,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCustomMassTransitRabbitMq(
         this IServiceCollection services,
+        string rabbitMqResource,
         Action<IRegistrationConfigurator, string>[] moduleConfigureConsumers
     )
     {
@@ -31,7 +31,7 @@ public static class ServiceCollectionExtensions
             {
                 string connectionString = context
                     .GetRequiredService<IConfiguration>()
-                    .GetConnectionString(Resources.RabbitMq)!;
+                    .GetConnectionString(rabbitMqResource)!;
 
                 cfg.Host(new Uri(connectionString!));
                 cfg.ConfigureEndpoints(context);

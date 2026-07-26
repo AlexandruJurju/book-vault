@@ -1,5 +1,4 @@
-﻿using BookShop.Shared;
-using BuildingBlocks.Infrastructure.Configuration;
+﻿using BuildingBlocks.Infrastructure.Configuration;
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,8 @@ namespace BuildingBlocks.Infrastructure.Cache;
 public static class HostApplicationBuilderExtensions
 {
     public static IServiceCollection AddCustomDistributedCache(
-        this IHostApplicationBuilder builder
+        this IHostApplicationBuilder builder,
+        string redisResource
     )
     {
         IServiceCollection services = builder.Services;
@@ -22,7 +22,7 @@ public static class HostApplicationBuilderExtensions
             .GetRequiredSection(CachingOptions.SectionName)
             .Get<CachingOptions>()!;
 
-        builder.AddRedisDistributedCache(Resources.Redis);
+        builder.AddRedisDistributedCache(redisResource);
 
         services.AddHybridCache(options =>
         {

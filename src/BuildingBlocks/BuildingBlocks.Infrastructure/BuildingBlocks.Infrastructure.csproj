@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Aspire\BookShop.Shared\BookShop.Shared.csproj"/>
         <ProjectReference Include="..\BuildingBlocks.Application\BuildingBlocks.Application.csproj"/>
     </ItemGroup>
 

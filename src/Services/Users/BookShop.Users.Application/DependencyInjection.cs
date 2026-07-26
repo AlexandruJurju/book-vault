@@ -27,7 +27,6 @@ public static class DependencyInjection
             .AsImplementedInterfaces()
             .WithScopedLifetime());
         
-        
         services.Decorate(typeof(IDomainEventHandler<>), typeof(IdempotentDomainEventHandler<>));
 
         return builder;
