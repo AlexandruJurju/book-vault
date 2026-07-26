@@ -10,12 +10,12 @@ namespace BookShop.Users.Application.Users.RegisterUser;
 public sealed class RegisterUserCommandHandler(
     IUsersDbContext usersDbContext,
     IUnitOfWork unitOfWork,
-    IIdentityProviderService identityProviderService
+    IIdentityProvider identityProvider
 ) : ICommandHandler<RegisterUserCommand, Guid>
 {
     public async Task<Result<Guid>> HandleAsync(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        Result<string> result = await identityProviderService.RegisterUserAsync(
+        Result<string> result = await identityProvider.CreateUserAsync(
             new UserModel(request.UserName, request.Email, request.Password),
             cancellationToken);
 

@@ -1,4 +1,5 @@
-﻿using BookShop.Shared;
+﻿using System.Reflection;
+using BookShop.Shared;
 using BuildingBlocks.Presentation.OpenApi;
 using BuildingBlocks.Infrastructure.Authentication;
 using BuildingBlocks.Infrastructure.Authorization;

@@ -4,7 +4,6 @@ using BookShop.Cart.Infrastructure.EntityFramework;
 using BookShop.Cart.Infrastructure.Inbox;
 using BookShop.Shared;
 using BookShop.Users.IntegrationEvents;
-using BuildingBlocks.Application.EventBus;
 using BuildingBlocks.Infrastructure.EntityFramework;
 using MassTransit;
 using Microsoft.Extensions.Configuration;

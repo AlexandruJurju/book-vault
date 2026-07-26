@@ -1,12 +1,13 @@
 ﻿using BookShop.Users.IntegrationEvents;
 using BuildingBlocks.Application.EventBus;
 
-namespace BookShop.Cart.Application.IntegrationEvents;
+namespace BookShop.Cart.Application.IntegrationEventsHandlers;
 
 public sealed class UserRegisteredIntegrationEventHandler : IIntegrationEventHandler<UserRegisteredIntegrationEvent>
 {
-    public async Task HandleAsync(UserRegisteredIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
+    public Task HandleAsync(UserRegisteredIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
     {
         Console.WriteLine(67);
+        return Task.CompletedTask;
     }
 }

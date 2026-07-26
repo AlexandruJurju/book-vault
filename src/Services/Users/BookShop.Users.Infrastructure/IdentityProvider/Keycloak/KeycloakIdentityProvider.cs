@@ -3,30 +3,30 @@ using Ardalis.Result;
 using BookShop.Users.Application.Abstractions.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace BookShop.Users.Infrastructure.IdentityProvider;
+namespace BookShop.Users.Infrastructure.IdentityProvider.Keycloak;
 
-internal sealed class KeycloakIdentityProviderService(
+internal sealed class KeycloakIdentityProvider(
     KeyCloakClient keyCloakClient,
-    ILogger<KeycloakIdentityProviderService> logger
-) : IIdentityProviderService
+    ILogger<KeycloakIdentityProvider> logger
+) : IIdentityProvider
 {
     private const string PasswordCredentialType = "Password";
 
-    public async Task<Result<string>> RegisterUserAsync(UserModel user, CancellationToken cancellationToken = default)
+    public async Task<Result<string>> CreateUserAsync(UserModel user, CancellationToken cancellationToken = default)
     {
-        var userRepresentation = new UserRepresentation(
+        var userRepresentation = new KeycloakUser(
             user.UserName,
             user.Email,
             string.Empty,
             string.Empty,
             true,
             true,
-            [new CredentialRepresentation(PasswordCredentialType, user.Password, false)]
+            [new KeycloakCredentialRepresentation(PasswordCredentialType, user.Password, false)]
         );
 
         try
         {
-            string identityId = await keyCloakClient.RegisterUserAsync(userRepresentation, cancellationToken);
+            string identityId = await keyCloakClient.CreateUserAsync(userRepresentation, cancellationToken);
             return identityId;
         }
         catch (HttpRequestException exception) when (exception.StatusCode == HttpStatusCode.Conflict)

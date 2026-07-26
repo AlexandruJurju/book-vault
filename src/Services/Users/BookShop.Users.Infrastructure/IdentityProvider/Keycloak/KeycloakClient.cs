@@ -1,14 +1,14 @@
 ﻿using System.Net.Http.Json;
 
-namespace BookShop.Users.Infrastructure.IdentityProvider;
+namespace BookShop.Users.Infrastructure.IdentityProvider.Keycloak;
 
 internal sealed class KeyCloakClient(HttpClient httpClient)
 {
-    internal async Task<string> RegisterUserAsync(UserRepresentation user, CancellationToken cancellationToken = default)
+    internal async Task<string> CreateUserAsync(KeycloakUser keycloakUser, CancellationToken cancellationToken = default)
     {
         HttpResponseMessage httpResponseMessage = await httpClient.PostAsJsonAsync(
             "users",
-            user,
+            keycloakUser,
             cancellationToken);
 
         httpResponseMessage.EnsureSuccessStatusCode();

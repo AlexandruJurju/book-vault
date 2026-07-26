@@ -6,6 +6,7 @@ using BookShop.Users.Infrastructure.Authorization;
 using BookShop.Users.Infrastructure.EntityFramework;
 using BookShop.Users.Infrastructure.Idempotency;
 using BookShop.Users.Infrastructure.IdentityProvider;
+using BookShop.Users.Infrastructure.IdentityProvider.Keycloak;
 using BookShop.Users.Infrastructure.Outbox;
 using BuildingBlocks.Application.Authorization;
 using BuildingBlocks.Application.CQRS;
@@ -54,7 +55,7 @@ public static class DependencyInjection
             })
             .AddHttpMessageHandler<KeycloakAuthDelegatingHandler>();
 
-        services.AddTransient<IIdentityProviderService, KeycloakIdentityProviderService>();
+        services.AddTransient<IIdentityProvider, KeycloakIdentityProvider>();
     }
 
     private static void AddOutboxJob(IServiceCollection services, IConfiguration configuration)

@@ -1,12 +1,12 @@
 ﻿namespace BuildingBlocks.Application.DTOs;
 
-public sealed class PagedResponse<T>
+public sealed record PaginatedResult<TItem>(
+    int PageNumber,
+    int PageSize,
+    int TotalCount,
+    IReadOnlyList<TItem> Items
+)
 {
-    public IReadOnlyCollection<T> Items { get; init; }
-    public int PageNumber { get; init; }
-    public int PageSize { get; init; }
-    public int TotalCount { get; init; }
-
     public int TotalPages => (TotalCount + PageSize - 1) / PageSize;
 
     public bool HasPreviousPage => PageNumber > 1;
