@@ -1,6 +1,5 @@
-﻿using System.Reflection;
-using BookShop.Shared;
-using BuildingBlocks.Presentation.OpenApi;
+﻿using BookShop.Shared;
+using BuildingBlocks.Api.OpenApi;
 using BuildingBlocks.Infrastructure.Authentication;
 using BuildingBlocks.Infrastructure.Authorization;
 using BuildingBlocks.Infrastructure.Cache;
@@ -31,7 +30,7 @@ internal static class DependencyInjection
     {
         IServiceCollection services = builder.Services;
         IConfiguration configuration = builder.Configuration;
-        
+
         builder.Services.AddTransient<IDomainEventsDispatcher, DomainEventsDispatcher>();
         builder.Services.AddTransient<IIntegrationEventsDispatcher, IntegrationEventsDispatcher>();
 

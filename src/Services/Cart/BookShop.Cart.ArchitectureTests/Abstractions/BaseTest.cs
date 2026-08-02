@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using BookShop.Cart.Presentation;
+using BookShop.Cart.Api;
 
 namespace BookShop.Cart.ArchitectureTests.Abstractions;
 

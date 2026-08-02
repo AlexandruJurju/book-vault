@@ -1,12 +1,12 @@
-using BookShop.Cart.Presentation;
-using BookShop.Catalog.Presentation;
+using BookShop.Cart.Api;
+using BookShop.Catalog.Api;
 using BookShop.ServiceDefaults;
-using BookShop.Users.Presentation;
+using BookShop.Users.Api;
 using BookShop.WebApi;
 using BookShop.WebApi.Extensions;
-using BuildingBlocks.Presentation.Endpoints;
-using BuildingBlocks.Presentation.ExceptionHandler;
-using BuildingBlocks.Presentation.Scalar;
+using BuildingBlocks.Api.Endpoints;
+using BuildingBlocks.Api.ExceptionHandler;
+using BuildingBlocks.Api.Scalar;
 using TickerQ.DependencyInjection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

@@ -12,5 +12,5 @@ internal abstract class BaseTest
 
     protected static readonly Assembly InfrastructureAssembly = typeof(DependencyInjection).Assembly;
 
-    protected static readonly Assembly PresentationAssembly = typeof(Presentation.AssemblyMarker).Assembly;
+    protected static readonly Assembly PresentationAssembly = typeof(Api.AssemblyMarker).Assembly;
 }

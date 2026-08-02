@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BuildingBlocks.Infrastructure.Authorization;
 
+// cannot be placed only in identity - all services will use claims transformation
 public sealed class CustomClaimsTransformation(
     IServiceScopeFactory serviceScopeFactory,
     HybridCache hybridCache
